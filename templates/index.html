@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>CV Ops — Input</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">⚡ CV Ops</div>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('docs') }}">Docs</a>
+      <a href="{{ url_for('about') }}">About</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Smart Image Processing</h1>
+    <p>Upload your image, choose a category & operation, and see instant results powered by Computer Vision.</p>
+  </section>
+
+  <!-- Form Section -->
+  <div class="container">
+    <form action="{{ url_for('process') }}" method="post" enctype="multipart/form-data" class="card">
+      <h2>🔧 Select Operation</h2>
+
+      <!-- Category -->
+      <label class="field">
+        <span>Category</span>
+        <select name="category" id="category" required>
+          <option value="" disabled selected>-- Select Category --</option>
+          {% for cat in categories.keys() %}
+            <option value="{{ cat }}">{{ cat }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <!-- Operation -->
+      <label class="field">
+        <span>Operation</span>
+        <select name="operation" id="operation" required>
+          <option value="" disabled selected>-- Select Operation --</option>
+        </select>
+      </label>
+
+      <!-- Extra params -->
+      <div id="params"></div>
+
+      <!-- File Upload -->
+      <label class="field upload-box">
+        <span>Upload Image</span>
+        <input type="file" name="image" accept="image/png, image/jpeg" required />
+      </label>
+
+      <!-- Submit -->
+      <div style="margin-top:16px;">
+        <button type="submit" class="btn">🚀 Apply Operation</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Made with ❤️ by <strong>Karti</strong> — Computer Vision                                                                                                                                          Project 1</p>
+  </footer>
+
+  <!-- JSON data -->
+  <script id="categories-data" type="application/json">
+    {{ categories | tojson }}
+  </script>
+
+  <!-- JS logic same as before -->
+  <script>
+    const categories = JSON.parse(document.getElementById('categories-data').textContent);
+    const extraParams = {
+      "Gamma transformation": [
+        {name: "gamma", label: "Gamma value", type: "number", step: "0.1", value: "1.0"}
+      ],
+      "Log transformation": [
+        {name: "c", label: "Scaling c", type: "number", step: "0.1", value: "1.0"}
+      ],
+      "Threshold transformation": [
+        {name: "thresh", label: "Threshold (0-255)", type: "number", step: "1", value: "128"}
+      ],
+      "Mean filter": [
+        {name: "ksize", label: "Kernel size (odd)", type: "number", step: "1", value: "3"}
+      ],
+      "Median Filter": [
+        {name: "ksize", label: "Kernel size (odd)", type: "number", step: "1", value: "3"}
+      ],
+      "Gaussian Filter": [
+        {name: "ksize", label: "Kernel size (odd)", type: "number", step: "1", value: "5"},
+        {name: "sigma", label: "Sigma", type: "number", step: "0.1", value: "1.0"}
+      ],
+      "Sobel Filter": [
+        {name: "dx", label: "dx (0/1)", type: "number", step: "1", value: "1"},
+        {name: "dy", label: "dy (0/1)", type: "number", step: "1", value: "0"},
+        {name: "ksize", label: "Kernel size (1/3/5/7)", type: "number", step: "1", value: "3"}
+      ]
+    };
+
+    const catEl = document.getElementById('category');
+    const opEl = document.getElementById('operation');
+    const paramsDiv = document.getElementById('params');
+
+    function fillOperations() {
+      const cat = catEl.value;
+      opEl.innerHTML = '<option value="" disabled selected>-- Select Operation --</option>';
+      if (!cat || !categories[cat]) return;
+      categories[cat].forEach(op => {
+        const o = document.createElement('option');
+        o.value = op;
+        o.textContent = op;
+        opEl.appendChild(o);
+      });
+      paramsDiv.innerHTML = '';
+    }
+
+    function showParams() {
+      const op = opEl.value;
+      paramsDiv.innerHTML = '';
+      if (!op) return;
+      const list = extraParams[op];
+      if (!list) return;
+      list.forEach(p => {
+        const wrapper = document.createElement('label');
+        wrapper.className = 'field slide-in';
+        const span = document.createElement('span');
+        span.textContent = p.label;
+        const input = document.createElement('input');
+        input.name = p.name;
+        input.type = p.type;
+        if (p.step) input.step = p.step;
+        input.value = p.value;
+        wrapper.appendChild(span);
+        wrapper.appendChild(input);
+        paramsDiv.appendChild(wrapper);
+      });
+    }
+
+    catEl.addEventListener('change', fillOperations);
+    opEl.addEventListener('change', showParams);
+  </script>
+</body>
+</html>

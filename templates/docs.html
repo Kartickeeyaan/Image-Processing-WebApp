@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Documentation — CV Ops</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">⚡ CV Ops</div>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('docs') }}" class="active">Docs</a>
+      <a href="{{ url_for('about') }}">About</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Documentation</h1>
+    <p>Learn how to use the CV Ops image processing tool and get the most out of it.</p>
+  </section>
+
+  <!-- Docs Content -->
+  <div class="container">
+    <h2>Getting Started</h2>
+    <p>CV Ops allows you to easily upload images and apply various image processing operations. Follow these simple steps:</p>
+    <ol>
+      <li>Choose a category from the dropdown (e.g., "Filters", "Transformation").</li>
+      <li>Select an operation (e.g., "Mean Filter", "Gamma Transformation").</li>
+      <li>Upload the image you'd like to process.</li>
+      <li>Click the "Apply Operation" button to view the processed result.</li>
+    </ol>
+
+    <h2>Supported Image Operations</h2>
+    <p>Here’s a list of operations you can apply to your image:</p>
+    <ul>
+      <li><strong>Gamma Transformation</strong> — Adjust the brightness and contrast.</li>
+      <li><strong>Log Transformation</strong> — Apply logarithmic scaling for enhancing darker regions.</li>
+      <li><strong>Thresholding</strong> — Convert images to binary based on a set threshold.</li>
+      <li><strong>Filters</strong> — Apply different filters such as Gaussian, Sobel, etc.</li>
+    </ul>
+    <br>
+    <h2>Common Issues and Troubleshooting</h2>
+    <ul>
+      <li><strong>Issue: Image is not uploading</strong><br>
+        Ensure the image is either a JPG or PNG format and does not exceed the size limit.</li>
+      <li><strong>Issue: Operations not showing</strong><br>
+        Make sure you've selected a category first.</li>
+    </ul>
+    <br>
+    <h2>Sample Images</h2>
+    <p>You can download sample images to test the operations:</p>
+    <a href="C:\Users\karti\OneDrive\Desktop\CV_project_1\sample-image.jpg" download class="btn">Download Sample Image</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Made with ❤️ by <strong>Karti</strong> — CV Project 1</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>About — CV Ops</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">⚡ CV Ops</div>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+      <a href="{{ url_for('docs') }}">Docs</a>
+      <a href="{{ url_for('about') }}" class="active">About</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>About CV Ops</h1>
+    <p>Learn more about the project and its creator.</p>
+  </section>
+
+  <!-- About Content -->
+  <div class="container">
+    <h2>What is CV Ops?</h2>
+    <p>CV Ops is an image processing tool built using Computer Vision techniques. It allows users to upload images and apply various operations such as filters, transformations, and enhancements.</p><br>
+
+    <h2>Project Goals</h2>
+    <p>The main goals of CV Ops are:</p>
+    <ul>
+      <li>Provide an easy-to-use interface for image processing.</li>
+      <li>Support multiple types of operations (e.g., filters, transformations).</li>
+      <li>Allow users to process images and visualize results in real-time.</li>
+    </ul><br>
+
+    <h2>Skills Used</h2>
+    <p>This project utilizes the following technologies:</p>
+    <ul>
+      <li><strong>Frontend:</strong> HTML, CSS, JavaScript, Flask (Python backend integration).</li>
+      <li><strong>Computer Vision:</strong> Various image processing algorithms implemented using OpenCV.</li>
+      <li><strong>Backend:</strong> Python and Flask for handling file uploads and processing logic.</li>
+    </ul><br>
+
+    <h2>About the Developer</h2>
+    <p><strong>Kartickeeyaan</strong><br>
+    A passionate AIML student with a keen interest in computer vision and web development.</p>
+
+    <h2>Contact</h2>
+    <p>If you have any questions or suggestions, feel free to reach out via email: <a href="mailto:your-kartickeeyaan@gmail.com">kartickeeyaan@gmail.com</a></p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Made with ❤️ by <strong>Karti</strong> — CV Project 1</p>
+  </footer>
+</body>
+</html>

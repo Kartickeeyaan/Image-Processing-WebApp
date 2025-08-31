@@ -1,0 +1,43 @@
+<!-- templates/result.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Result — {{ operation }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1>{{ category }} → {{ operation }}</h1>
+
+    <div class="grid">
+      <div class="panel">
+        <h2>Input</h2>
+        <img src="{{ input_image_url }}" alt="input image" class="img" />
+      </div>
+
+      <div class="panel">
+        <h2>Output</h2>
+        <img src="{{ output_image_url }}" alt="output image" class="img" />
+      </div>
+    </div>
+
+    <div class="meta card">
+      <h3>Parameters used</h3>
+      {% if params %}
+        <ul>
+        {% for k, v in params.items() %}
+          <li><strong>{{ k }}:</strong> {{ v }}</li>
+        {% endfor %}
+        </ul>
+      {% else %}
+        <p>No extra parameters provided.</p>
+      {% endif %}
+      <div style="margin-top:12px;"><br>
+        <a class="btn" href="{{ url_for('index') }}">← Try another</a>
+        <a class="btn secondary" href="{{ output_image_url }}" download>Download result</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
